@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="robots" content="index, follow">
+
+    <title>Add Date on Photo Online (Free) | SSC & UPSC Photo Date Maker</title>
+    <meta name="description" content="Free tool to add Name and Date of Photo (DOP) on passport size images. Resize to 20kb-50kb for SSC CGL, CHSL, UPSC, and Railways forms. No Login.">
+    <meta name="keywords" content="add date in passport size photo, photo date and name, ssc photo date maker, resize image to 50kb, date on photo app, passport photo editor online">
+
+    <link rel="canonical" href="https://your-username.github.io/Sarkari-Photo-Date-Maker/" />
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📅</text></svg>">
+
+    <style>
+        :root { --primary: #2563eb; --bg: #f1f5f9; --text: #1e293b; --border: #cbd5e1; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; line-height: 1.6; }
+        
+        .container { max-width: 480px; margin: 0 auto; background: white; padding: 25px; border-radius: 16px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); border: 1px solid var(--border); }
+        
+        h1 { font-size: 1.5rem; text-align: center; color: #1e40af; margin-bottom: 5px; font-weight: 800; }
+        .sub-head { text-align: center; font-size: 0.9rem; color: #64748b; margin-bottom: 20px; }
+        
+        /* Upload Box */
+        .upload-box { border: 2px dashed #94a3b8; background: #f8fafc; padding: 30px; text-align: center; border-radius: 12px; cursor: pointer; transition: 0.2s; }
+        .upload-box:hover { border-color: var(--primary); background: #eff6ff; }
+        .icon { font-size: 2rem; display: block; margin-bottom: 8px; }
+        
+        /* Inputs */
+        .controls { display: none; margin-top: 20px; gap: 15px; }
+        .form-group { text-align: left; }
+        label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 5px; color: #475569; }
+        input, select { width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 1rem; box-sizing: border-box; }
+        
+        /* Preview */
+        .preview-area { display: none; margin-top: 25px; text-align: center; background: #f8fafc; padding: 15px; border-radius: 12px; border: 1px solid var(--border); }
+        canvas { max-width: 100%; height: auto; border: 1px solid #ddd; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        
+        /* Button */
+        .btn { background: var(--primary); color: white; border: none; padding: 14px; width: 100%; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer; margin-top: 15px; box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.4); }
+        .btn:hover { background: #1d4ed8; transform: translateY(-1px); }
+        .btn:active { transform: translateY(0); }
+        .btn:disabled { background: #94a3b8; cursor: not-allowed; }
+
+        .size-tag { display: inline-block; margin-top: 10px; padding: 5px 10px; background: #e0f2fe; color: #0369a1; font-size: 0.85rem; font-weight: 600; border-radius: 20px; }
+
+        /* SEO Footer */
+        .seo-content { margin-top: 40px; border-top: 1px solid var(--border); padding-top: 20px; font-size: 0.9rem; color: #64748b; }
+        .seo-content h2 { font-size: 1.1rem; color: #334155; margin-bottom: 10px; }
+        .seo-content p { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Sarkari Photo Date Maker</h1>
+    <p class="sub-head">Add Name & Date (DOP) • Resize to 20kb-50kb</p>
+
+    <div class="upload-box" onclick="document.getElementById('fileInput').click()">
+        <span class="icon">📷</span>
+        <strong>Click to Upload Photo</strong>
+        <div style="font-size: 0.8rem; color: #64748b; margin-top:5px;">Supports JPG, PNG</div>
+    </div>
+    <input type="file" id="fileInput" accept="image/*" style="display: none;">
+
+    <div class="controls" id="controls">
+        <div class="form-group">
+            <label>Name (Optional)</label>
+            <input type="text" id="nameInput" placeholder="Ex: RAHUL SHARMA" oninput="this.value = this.value.toUpperCase()">
+        </div>
+        <div class="form-group">
+            <label>Date of Photo (DOP)</label>
+            <input type="date" id="dateInput">
+        </div>
+        <div class="form-group">
+            <label>Target File Size</label>
+            <select id="sizeSelect">
+                <option value="50">SSC/UPSC Normal (20kb - 50kb)</option>
+                <option value="20">Signature/Thumb (10kb - 20kb)</option>
+                <option value="100">High Quality (Max 100kb)</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="preview-area" id="previewArea">
+        <canvas id="canvas"></canvas>
+        <br>
+        <div id="statusText" class="size-tag">Preview Ready</div>
+        <button id="downloadBtn" class="btn">DOWNLOAD PHOTO</button>
+    </div>
+
+    <div class="seo-content">
+        <h2>How to add date in passport size photo?</h2>
+        <p>This <strong>Sarkari Photo Date Maker</strong> is a free tool designed for Indian students. It allows you to:</p>
+        <ul style="padding-left: 20px;">
+            <li>Add <strong>Date of Photo (DOP)</strong> automatically.</li>
+            <li>Resize images to strictly under <strong>50kb or 20kb</strong>.</li>
+            <li>Create perfect 3.5cm x 4.5cm passport photos for <strong>SSC CGL, CHSL, UPSC, and Railways</strong>.</li>
+        </ul>
+        <p>Your photos are processed locally in your browser. 100% Safe.</p>
+    </div>
+</div>
+
+<script>
+    // DOM Elements
+    const fileInput = document.getElementById('fileInput');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const controls = document.getElementById('controls');
+    const previewArea = document.getElementById('previewArea');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const statusText = document.getElementById('statusText');
+
+    let originalImg = new Image();
+    let fileName = "sarkari-photo.jpg";
+
+    // Set Today's Date by Default
+    document.getElementById('dateInput').valueAsDate = new Date();
+
+    // 1. Image Upload Handler
+    fileInput.addEventListener('change', (e) => {
+        if (e.target.files && e.target.files[0]) {
+            const file = e.target.files[0];
+            fileName = file.name.split('.')[0] + "-edited.jpg";
+            
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                originalImg.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    originalImg.onload = () => {
+        controls.style.display = 'grid';
+        previewArea.style.display = 'block';
+        drawPhoto();
+    };
+
+    // 2. Real-time Edit Listeners
+    ['nameInput', 'dateInput'].forEach(id => {
+        document.getElementById(id).addEventListener('input', drawPhoto);
+    });
+
+    // 3. Drawing Logic (The Brain)
+    function drawPhoto() {
+        // Standard Passport Size in Pixels (3.5:4.5 aspect ratio)
+        const targetW = 350;
+        const targetH = 450;
+        
+        canvas.width = targetW;
+        canvas.height = targetH;
+
+        // Smart Crop Logic (Object-fit: Cover)
+        // This prevents stretching of wide or tall images
+        const imgRatio = originalImg.width / originalImg.height;
+        const targetRatio = targetW / targetH;
+        
+        let renderW, renderH, offsetX, offsetY;
+
+        if (imgRatio > targetRatio) {
+            // Image is wider
+            renderH = targetH;
+            renderW = originalImg.width * (targetH / originalImg.height);
+            offsetX = (targetW - renderW) / 2;
+            offsetY = 0;
+        } else {
+            // Image is taller
+            renderW = targetW;
+            renderH = originalImg.height * (targetW / originalImg.width);
+            offsetX = 0;
+            offsetY = (targetH - renderH) / 2;
+        }
+
+        // Draw White Background first (clean slate)
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, targetW, targetH);
+        
+        // Draw Image
+        ctx.drawImage(originalImg, offsetX, offsetY, renderW, renderH);
+
+        // 4. Add Name & Date Strip
+        const name = document.getElementById('nameInput').value.trim();
+        const rawDate = document.getElementById('dateInput').value;
+        const date = rawDate ? rawDate.split('-').reverse().join('-') : ""; // Convert YYYY-MM-DD to DD-MM-YYYY
+
+        if (name || date) {
+            const stripHeight = (name && date) ? 85 : 55;
+            const startY = targetH - stripHeight;
+
+            // Strip Background (White)
+            ctx.fillStyle = "white";
+            ctx.fillRect(0, startY, targetW, stripHeight);
+            
+            // Thin Border Line
+            ctx.beginPath();
+            ctx.moveTo(0, startY);
+            ctx.lineTo(targetW, startY);
+            ctx.strokeStyle = "#000";
+            ctx.lineWidth = 1;
+            ctx.stroke();
+
+            // Text Styles
+            ctx.fillStyle = "black";
+            ctx.textAlign = "center";
+            ctx.font = "bold 22px Arial";
+
+            // Draw Text
+            if (name && date) {
+                ctx.fillText(name, targetW / 2, startY + 30);
+                ctx.fillText(`DOP: ${date}`, targetW / 2, startY + 65);
+            } else if (name) {
+                ctx.fillText(name, targetW / 2, startY + 35);
+            } else if (date) {
+                ctx.fillText(`DOP: ${date}`, targetW / 2, startY + 35);
+            }
+        }
+        
+        statusText.innerText = "Preview Updated";
+        statusText.style.background = "#e0f2fe";
+        statusText.style.color = "#0369a1";
+    }
+
+    // 5. Smart Compression (The Engine)
+    downloadBtn.addEventListener('click', async () => {
+        downloadBtn.innerText = "Compressing...";
+        downloadBtn.disabled = true;
+
+        const targetKB = parseInt(document.getElementById('sizeSelect').value);
+        let quality = 0.95;
+        let blob = await getCanvasBlob(quality);
+        
+        // Loop to reduce quality until size is met
+        let attempts = 0;
+        // Limit max attempts to 20 to prevent infinite loops
+        while ((blob.size / 1024) > targetKB && quality > 0.1 && attempts < 20) {
+            quality -= 0.05;
+            blob = await getCanvasBlob(quality);
+            attempts++;
+        }
+
+        // Success Feedback
+        const finalSize = (blob.size / 1024).toFixed(1);
+        statusText.innerText = `Final Size: ${finalSize} KB`;
+        statusText.style.background = "#dcfce7";
+        statusText.style.color = "#166534";
+
+        // Create Download
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        // Reset Button
+        setTimeout(() => {
+            downloadBtn.innerText = "DOWNLOAD PHOTO";
+            downloadBtn.disabled = false;
+        }, 1000);
+    });
+
+    // Helper to get Blob from Canvas
+    function getCanvasBlob(q) {
+        return new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', q));
+    }
+</script>
+
+</body>
+</html>
