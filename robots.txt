@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://https://orbitwebtools.github.io/Sarkari-Photo-Date-Maker/sitemap.xml
